@@ -1,0 +1,52 @@
+graph = [
+    [0,  1,  2],
+    ['#', 7, 3],
+    ['#', 2, 1]
+    
+    ]
+
+destination = graph[2][1]
+
+#def findDistance(vertex):
+    
+
+# initialising variables
+
+inf = float('inf')
+
+dist = [0, inf, inf, inf, inf, inf]
+unvisitedPlaces = []
+visitedPlaces = []
+
+for row in graph:
+    for node in row:
+        if type(node) == int:
+            if node == 0:
+                visitedPlaces.append(node)
+            else:
+                unvisitedPlaces.append(node)
+            
+# algorithm
+
+while len(unvisitedPlaces) > 0:
+    
+    tempDistanceList = []
+    nodeDistance = 0
+    
+    for row in graph:
+        for node in row:
+            if type(node) == int:
+                
+                # check if the node is adjacent to the last visited node
+                if abs(row.index(node) - row.index(row[visitedPlaces[-1]])) == 1:
+                    if abs(row.index(node) - row.index(row[visitedPlaces[-1]])) == len(row):
+                        # add distance to the list of distances
+                        nodeDistance = visitedPlaces[-1] + node
+                        tempDistanceList.append(nodeDistance)
+
+                
+                #if node not in visitedPlaces:
+                #    distanceList.append(node)
+    print(tempDistanceList)       
+visitedPlaces.append(min(distanceList))
+unvisitedPlaces.remove(min(distanceList))
